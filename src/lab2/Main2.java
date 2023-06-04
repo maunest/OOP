@@ -9,12 +9,12 @@ public class Main2 {
         String[] facilities = {"Кожаное кресло", "Кондиционер"};
         Car car = new Car(2200, "Toyota", 5000, 4, facilities);
         FileOutputStream fos = new FileOutputStream("./res/output.txt");
-        IOUtils.serialize(car, fos);
+        Tools.serialize(car, fos);
         fos.close();
 
 
         FileInputStream fis = new FileInputStream("./res/output.txt");
-        Transport car1 = IOUtils.deserialize(fis);
+        Transport car1 = Tools.deserialize(fis);
         System.out.println(car1);
         fis.close();
     }
