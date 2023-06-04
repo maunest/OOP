@@ -1,9 +1,10 @@
 package lab1;
 
+import java.io.Serializable;
 import java.io.OutputStream;
 import java.io.Writer;
 
-public interface Transport {
+public interface Transport extends Serializable {
 
     // Геттеры
     int getSpeed();
@@ -25,4 +26,3 @@ public interface Transport {
     void output(OutputStream out);
     void write(Writer out);
 }
-

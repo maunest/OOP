@@ -2,11 +2,7 @@ package lab1;
 
 import lab2.IOUtils;
 
-import java.io.BufferedWriter;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.Writer;
+import java.io.*;
 
 import java.util.Objects;
 
@@ -114,6 +110,7 @@ public class Car implements Transport {
 
     //Лаба 5
 
+
     @Override
     public void output(OutputStream out) {
         try {
@@ -138,5 +135,4 @@ public class Car implements Transport {
             e.printStackTrace();
         }
     }
-
 }

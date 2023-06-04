@@ -1,7 +1,6 @@
 package lab2;
 
-import lab1.*;
-
+import lab1.Transport;
 import java.io.*;
 
 public class IOUtils {
@@ -41,6 +40,23 @@ public class IOUtils {
             return clazz.getConstructor(int.class, String.class, double.class, int.class)
                     .newInstance(speed, brand, cost, capacity);
         } catch (IOException | ReflectiveOperationException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static <T extends Transport> void serialize(T obj, OutputStream out) {
+        try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(out)) {
+            objectOutputStream.writeObject(obj);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static <T extends Transport> T deserialize(InputStream in) {
+        try (ObjectInputStream objectInputStream = new ObjectInputStream(in)) {
+            return (T) objectInputStream.readObject();
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return null;

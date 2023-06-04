@@ -2,11 +2,7 @@ package lab1;
 
 import lab2.IOUtils;
 
-import java.io.BufferedWriter;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.Writer;
+import java.io.*;
 
 import java.util.Objects;
 
@@ -60,7 +56,6 @@ public class Truck implements Transport {
         this.cost = cost;
     }
 
-
     // Объявляемое исключение
     public void setSpeed(int speed) throws InvalidSpeedException {
         if (speed < 0) {
@@ -95,7 +90,7 @@ public class Truck implements Transport {
                 ", cost = " + cost +
                 ", capacity = " + capacity +
                 "t}";
-        }
+    }
 
     @Override
     public boolean equals(Object object) {
@@ -141,5 +136,4 @@ public class Truck implements Transport {
             e.printStackTrace();
         }
     }
-
 }
