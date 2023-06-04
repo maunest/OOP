@@ -7,7 +7,8 @@ import java.io.*;
 
 public class Main {
     public static void main(String[] args) {
-        Car car = new Car(200, "Toyota", 5000, 4);
+        String[] facilities = {"Кожаное кресло", "Кондиционер"};
+        Car car = new Car(200, "Toyota", 5000, 4, facilities);
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
         // Запись объекта в байтовый поток

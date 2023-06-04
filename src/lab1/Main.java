@@ -6,13 +6,15 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<Transport> transportList = new ArrayList<>();
 
+        String[] facilities = {"Кожаное кресло", "Кондиционер"};
+
         // Добавляем объекты автомобилей и грузовиков в массив транспортов
-        transportList.add(new Car(270, "Honda", 20000, 5));
-        transportList.add(new Truck(70, "Volvo", 50000, 10000));
-        transportList.add(new Car(225, "Toyota", 25000, 6));
-        transportList.add(new Truck(60, "Mercedes", 80000, 12000));
-        transportList.add(new Car(340, "Audi", 80000, 2));
-        transportList.add(new Truck(50, "Scania", 90000, 12500));
+        transportList.add(new Car(270, "Honda", 20000, 5, facilities));
+        transportList.add(new Truck(70, "Volvo", 50000, 10000, facilities));
+        transportList.add(new Car(225, "Toyota", 25000, 6, facilities));
+        transportList.add(new Truck(60, "Mercedes", 80000, 12000, facilities));
+        transportList.add(new Car(340, "Audi", 80000, 2, facilities));
+        transportList.add(new Truck(50, "Scania", 90000, 12500, facilities));
 
         // Выводим полную информацию обо всех объектах в массив
         for (Transport transport : transportList) {

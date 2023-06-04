@@ -10,6 +10,8 @@ import java.util.Scanner;
 
 public class UserInterface {
 
+    static String[] facilities = {"Кожаное кресло", "Кондиционер"};
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         List<Transport> transportList = new ArrayList<>();
@@ -54,7 +56,7 @@ public class UserInterface {
         System.out.print("Грузоподъемность: ");
         int capacity = scanner.nextInt();
 
-        return new Car(speed, brand, cost, capacity);
+        return new Car(speed, brand, cost, capacity, facilities);
     }
 
     private static Truck createTruck(Scanner scanner) {
@@ -72,6 +74,6 @@ public class UserInterface {
         System.out.print("Грузоподъемность: ");
         int capacity = scanner.nextInt();
 
-        return new Truck(speed, brand, cost, capacity);
+        return new Truck(speed, brand, cost, capacity, facilities);
     }
 }

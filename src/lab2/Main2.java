@@ -6,7 +6,8 @@ import lab1.*;
 public class Main2 {
 
     public static void main(String[] args) throws IOException {
-        Car car = new Car(2200, "Toyota", 5000, 4);
+        String[] facilities = {"Кожаное кресло", "Кондиционер"};
+        Car car = new Car(2200, "Toyota", 5000, 4, facilities);
         FileOutputStream fos = new FileOutputStream("./res/output.txt");
         IOUtils.serialize(car, fos);
         fos.close();

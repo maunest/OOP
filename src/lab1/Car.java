@@ -1,9 +1,9 @@
 package lab1;
 
-import lab2.IOUtils;
-
 import java.io.*;
 
+import java.util.Iterator;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Car implements Transport {
@@ -13,6 +13,8 @@ public class Car implements Transport {
     private double cost;
     private int capacity;
 
+    private String[] facilities;
+
 
     // Конструкторы
     public Car() {
@@ -20,13 +22,15 @@ public class Car implements Transport {
         this.brand = "MOAIS";
         this.cost = 4_345_000;
         this.capacity = 250;
+        this.facilities = new String[]{"Кожаное кресло", "Кондиционер"};
     }
 
-    public Car(int speed, String brand, double cost, int capacity) {
+    public Car(int speed, String brand, double cost, int capacity, String[] facilities) {
         this.speed = speed;
         this.brand = brand;
         this.cost = cost;
         this.capacity = capacity;
+        this.facilities = facilities;
     }
 
     // Геттеры
@@ -83,12 +87,12 @@ public class Car implements Transport {
     // Переопределение методов Object
     @Override
     public String toString() {
-        return "lab1.Car{" +
+        return "Car{" +
                 "speed = " + speed +
                 "km/h, brand = " + brand +
                 ", cost = " + cost +
                 ", capacity = " + capacity +
-                "t}";
+                "t + facilities = " + Arrays.toString(facilities) + "}";
     }
 
     @Override
@@ -99,7 +103,7 @@ public class Car implements Transport {
         return speed == car.speed &&
                 Double.compare(car.cost, cost) == 0 &&
                 capacity == car.capacity &&
-                Objects.equals(brand, car.brand);
+                Objects.equals(brand, car.brand) && Arrays.equals(facilities, car.facilities);
     }
 
     @Override
@@ -133,6 +137,32 @@ public class Car implements Transport {
             bufferedWriter.flush();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    // ;ab6
+
+    @Override
+    public Iterator<String> iterator() {
+        return new FacilitiesIterator(facilities);
+    }
+
+    private static class FacilitiesIterator implements Iterator<String> {
+        private int currentIndex = 0;
+        private String[] facilities;
+
+        public FacilitiesIterator(String[] facilities) {
+            this.facilities = facilities;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return currentIndex < facilities.length;
+        }
+
+        @Override
+        public String next() {
+            return facilities[currentIndex++];
         }
     }
 }

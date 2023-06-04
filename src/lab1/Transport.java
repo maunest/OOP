@@ -3,8 +3,9 @@ package lab1;
 import java.io.Serializable;
 import java.io.OutputStream;
 import java.io.Writer;
+import java.util.Iterator;
 
-public interface Transport extends Serializable {
+public interface Transport extends Serializable, Iterable<String> {
 
     // Геттеры
     int getSpeed();
@@ -25,4 +26,7 @@ public interface Transport extends Serializable {
 
     void output(OutputStream out);
     void write(Writer out);
+
+    // lab 6
+    Iterator<String> iterator();
 }

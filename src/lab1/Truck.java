@@ -1,9 +1,9 @@
 package lab1;
 
-import lab2.IOUtils;
-
 import java.io.*;
 
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Objects;
 
 public class Truck implements Transport {
@@ -13,6 +13,10 @@ public class Truck implements Transport {
     private double cost;
     private int capacity;
 
+    private String[] facilities;
+
+    // массив удобств
+
 
     // Конструкторы
     public Truck() {
@@ -20,13 +24,15 @@ public class Truck implements Transport {
         this.brand = "Volvo";
         this.cost = 1_000_000;
         this.capacity = 5000;
+        this.facilities = new String[]{"Кожаное кресло", "Кондиционер"};
     }
 
-    public Truck(int speed, String brand, double cost, int capacity) {
+    public Truck(int speed, String brand, double cost, int capacity, String[] facilities) {
         this.speed = speed;
         this.brand = brand;
         this.cost = cost;
         this.capacity = capacity;
+        this.facilities = facilities;
     }
 
     // Геттеры
@@ -84,12 +90,12 @@ public class Truck implements Transport {
     // Переопределение методов Object
     @Override
     public String toString() {
-        return "lab1.Truck{" +
+        return "Truck{" +
                 "speed = " + speed +
                 "km/h, brand = " + brand +
                 ", cost = " + cost +
                 ", capacity = " + capacity +
-                "t}";
+                "t + facilities = " + Arrays.toString(facilities) + "}";
     }
 
     @Override
@@ -100,7 +106,7 @@ public class Truck implements Transport {
         return speed == truck.speed &&
                 Double.compare(truck.cost, cost) == 0 &&
                 capacity == truck.capacity &&
-                Objects.equals(brand, truck.brand);
+                Objects.equals(brand, truck.brand) && Arrays.equals(facilities, truck.facilities);
     }
 
     @Override
@@ -134,6 +140,32 @@ public class Truck implements Transport {
             bufferedWriter.flush();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    // ;ab6
+
+    @Override
+    public Iterator<String> iterator() {
+        return new FacilitiesIterator(facilities);
+    }
+
+    private static class FacilitiesIterator implements Iterator<String> {
+        private int currentIndex = 0;
+        private String[] facilities;
+
+        public FacilitiesIterator(String[] facilities) {
+            this.facilities = facilities;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return currentIndex < facilities.length;
+        }
+
+        @Override
+        public String next() {
+            return facilities[currentIndex++];
         }
     }
 }
